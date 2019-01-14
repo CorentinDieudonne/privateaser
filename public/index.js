@@ -201,28 +201,28 @@ function payActors(actors,events)
   {
     eventsi=events.find(event => event.id === actors[i]["eventId"] );
 
-    if(actors[i]["who"]=='booker')
+    if(actors[i]["payment"][0]["who"]=='booker')
     {
-      actors[i]["amount"]=eventsi["price"];
+      actors[i]["payment"][0]["amount"]=eventsi["price"];
     }
 
-    else if(actors[i]["who"]=='bar')
+    else if(actors[i]["payment"][0]["who"]=='bar')
     {
-      actors[i]["amount"]=eventsi["price"]-eventsi["insurance"]-eventsi["treasury"]-eventsi["privateaser"];
+      actors[i]["payment"][0]["amount"]=eventsi["price"]-eventsi["insurance"]-eventsi["treasury"]-eventsi["privateaser"];
     }
 
-    else if(actors[i]["who"]=='insurance')
+    else if(actors[i]["payment"][0]["who"]=='insurance')
     {
-      actors[i]["amount"]=eventsi["insurance"];
+      actors[i]["payment"][0]["amount"]=eventsi["insurance"];
     }
 
-    else if(actors[i]["who"]=='treasury')
+    else if(actors[i]["payment"][0]["who"]=='treasury')
     {
-      actors[i]["amount"]=eventsi["treasury"];
+      actors[i]["payment"][0]["amount"]=eventsi["treasury"];
     }
-    else if(actors[i]["who"]=='privateaser')
+    else if(actors[i]["payment"][0]["who"]=='privateaser')
     {
-      actors[i]["amount"]=eventsi["privateaser"];
+     actors[i]["payment"][0]["amount"]=eventsi["privateaser"];
     }
 
   }
