@@ -152,11 +152,37 @@ function calculteprice()
     for(var i=0;i<bars.length;i++)
     {
     if(events[j].barId==bars[i].id)
-      events[j].price=events[j].time*bars[i].pricePerHour+events[j].persons*bars[i].pricePerPerson;
+    {
+        if(events[i].persons>60)
+          events[j].price=events[j].time*bars[i].pricePerHour+(events[j].persons*bars[i].pricePerPerson)*0.5;
+        else
+        {
+          if(events[j].persons>20)
+            events[j].price=events[j].time*bars[i].pricePerHour+(events[j].persons*bars[i].pricePerHour)*0.7;
+          else
+          {
+            if(events[j].persons>10)
+              events[j].price=events[j].time*bars[i].pricePerHour+(events[j].persons*bars[i].pricePerHour)*0.9;
+            else
+              events[j].price=events[j].time*bars[i].pricePerHour+(events[j].persons*bars[i].pricePerHour);
+          }
+        } 
+      }
     }
   }
 }
+function calculatecomission()
+{
+  for(var i=0;i<events.length;i++)
+  {
+  events[i].commission=0.3*(events[i].price;
+  events[i].insurance=0.5*(events[i].commission);
+  events[i].treasury=events[i].persons;
+  events[i].privateaser=events[i].price-(events[i].commission+events[i].treasury);
+  }
+}
 calculteprice();
+calculatecomission();
 console.log(bars);
 console.log(events);
 console.log(actors);
