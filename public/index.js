@@ -187,17 +187,49 @@ function calculatedeductible()
     {
       (if events[i].deductibleReduction==true)
         {
-          events[i].price+=events[i].persons;
+          events[i].privateaser+=events[i].persons;
         }
     }
 }
 
-function payactors()
+function payActors(actors,events)
 {
-  
+
+  var eventsi;
+
+  for(var i=0;i<actors.length;i++)
+  {
+    eventsi=events.find(event => event.id === actors[i]["eventId"] );
+
+    if(actors[i]["who"]=='booker')
+    {
+      actors[i]["amount"]=eventsi["price"];
+    }
+
+    else if(actors[i]["who"]=='bar')
+    {
+      actors[i]["amount"]=eventsi["price"]-eventsi["insurance"]-eventsi["treasury"]-eventsi["privateaser"];
+    }
+
+    else if(actors[i]["who"]=='insurance')
+    {
+      actors[i]["amount"]=eventsi["insurance"];
+    }
+
+    else if(actors[i]["who"]=='treasury')
+    {
+      actors[i]["amount"]=eventsi["treasury"];
+    }
+    else if(actors[i]["who"]=='privateaser')
+    {
+      actors[i]["amount"]=eventsi["privateaser"];
+    }
+
+  }
 }
 calculteprice();
 calculatecomission();
+payActors();
 console.log(bars);
 console.log(events);
 console.log(actors);
