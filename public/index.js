@@ -175,11 +175,26 @@ function calculatecomission()
 {
   for(var i=0;i<events.length;i++)
   {
-  events[i].commission=0.3*(events[i].price;
+  events[i].commission=0.3*(events[i].price);
   events[i].insurance=0.5*(events[i].commission);
   events[i].treasury=events[i].persons;
   events[i].privateaser=events[i].price-(events[i].commission+events[i].treasury);
   }
+}
+function calculatedeductible()
+{
+  for(var i=0;i<events.length;i++)
+    {
+      (if events[i].deductibleReduction==true)
+        {
+          events[i].price+=events[i].persons;
+        }
+    }
+}
+
+function payactors()
+{
+  
 }
 calculteprice();
 calculatecomission();
